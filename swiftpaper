@@ -36,7 +36,7 @@ do
 
 		# Explain
 		echo -e "The following file already exists in this directory:"
-		echo -e "    $cRed$tF$cNone"
+		echo -e "  $cRed$tF$cNone"
 		echo -e "Please run $ttl in a clean directory."
 
 		# Exit
