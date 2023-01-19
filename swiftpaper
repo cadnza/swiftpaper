@@ -11,6 +11,10 @@ cNone="\033[0m"
 ttlPlain=swiftpaper
 ttl=$cCyanBold$ttlPlain$cNone
 
+# Set filenames for before and after commands
+runBefore="$HOME/.swiftpaper_before"
+runAfter="$HOME/.swiftpaper_after"
+
 # Check for init; show help otherwise
 initCommand=init
 [[ $1 = $initCommand ]] || {
@@ -56,3 +60,30 @@ do
 		exit 1
 	}
 done
+
+# Set filenames for before and after commands
+runBefore="$HOME/.swiftpaper_before"
+runAfter="$HOME/.swiftpaper_after"
+
+# Source before command
+[ -f $runBefore ] && source $runBefore
+
+# Set source directory
+dC=${0:a:h}/toCopy
+
+# Copy files
+cp $dC/gitignore ./.gitignore
+cp $dC/main.swift ./main.swift
+
+# Copy directories
+cp -r $dC/src ./src
+cp -r $dC/vscode ./.vscode
+
+# Source after command
+[ -f $runAfter ] && source $runAfter
+
+# Show done message and refer to VSCode extensions
+# ROAD WORK #TEMP
+
+# Exit
+exit 0
