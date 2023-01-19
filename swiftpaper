@@ -35,9 +35,9 @@ do
 	[[ -f "./$tF" ]] && {
 
 		# Explain
-		echo -e "The following file already exists in this directory:"
-		echo -e "  $cRed$tF$cNone"
-		echo -e "Please run $ttl in a clean directory."
+		>&2 echo -e "The following file already exists in this directory:"
+		>&2 echo -e "  $cRed$tF$cNone"
+		>&2 echo -e "Please run $ttl in a clean directory."
 
 		# Exit
 		exit 1
@@ -48,9 +48,9 @@ do
 	[[ -d "./$tD" ]] && {
 
 		# Explain
-		echo -e "The following directory already exists in this directory:"
-		echo -e "    $cBlue$tD$cNone"
-		echo -e "Please run $ttl in a clean directory."
+		>&2 echo -e "The following directory already exists in this directory:"
+		>&2 echo -e "    $cBlue$tD$cNone"
+		>&2 echo -e "Please run $ttl in a clean directory."
 
 		# Exit
 		exit 1
