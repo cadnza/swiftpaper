@@ -3,6 +3,7 @@
 # Set colors
 cCyanBold="\033[1;36m"
 cRed="\033[0;31m"
+cRedBold="\033[1;31m"
 cBlue="\033[0;34m"
 cPurple="\033[0;35m"
 cGreen="\033[0;32m"
@@ -96,11 +97,40 @@ cp $dC/main.swift ./main.swift
 cp -r $dC/src ./src
 cp -r $dC/vscode ./.vscode
 
+# Find out whether VSCode and the recommended extensions are installed
+hasVSCode=0
+hasExtLLDB=0
+hasExtSwft=0
+[[ $(command -v code) ]] && {
+	hasVSCode=1
+	exts=$(code --list-extensions 2> /dev/null)
+	hasExtLLDB=$(echo $exts | grep -c vadimcn\.vscode-lldb)
+	hasExtSwft=$(echo $exts | grep -c sswg\.swift-lang)
+}
+
+# Set note strings
+noteString="$cRedBold""NOTE:$cNone"
+noteSpaces="     "
+
+# Display notes
+[ $hasVSCode = 1 ] || >&2 echo -e "$noteString $ttl works best with VSCode."
+[ $hasExtLLDB = 1 ] || {
+	>&2 echo -e "$noteString The CodeLLDB extension is required for debugging $ttl in VSCode."
+	[ $hasVSCode = 1 ] && {
+		>&2 echo -e "$noteSpaces It can be installed with the following command:"
+		>&2 echo -e "$noteSpaces $cGreen""code --install-extension vadimcn.vscode-lldb$cNone"
+	}
+}
+[ $hasExtSwft = 1 ] || {
+	>&2 echo -e "$noteString The Swift extension is recommended for Swift support in VSCode."
+	[ $hasVSCode = 1 ] && {
+		>&2 echo -e "$noteSpaces It can be installed with the following command:"
+		>&2 echo -e "$noteSpaces $cGreen""code --install-extension sswg.swift-lang$cNone"
+	}
+}
+
 # Source after command
 [ -f $runAfter ] && source $runAfter
-
-# Show done message and refer to VSCode extensions
-# ROAD WORK #TEMP
 
 # Exit
 exit 0
