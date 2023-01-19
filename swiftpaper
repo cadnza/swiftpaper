@@ -1,10 +1,11 @@
 #!/usr/bin/env zsh
 
 # Set colors
-cCyan="\033[0;36m"
 cCyanBold="\033[1;36m"
 cRed="\033[0;31m"
 cBlue="\033[0;34m"
+cPurple="\033[0;35m"
+cGreen="\033[0;32m"
 cNone="\033[0m"
 
 # Define name
@@ -12,16 +13,32 @@ ttlPlain=swiftpaper
 ttl=$cCyanBold$ttlPlain$cNone
 
 # Set filenames for before and after commands
-runBefore="$HOME/.swiftpaper_before"
-runAfter="$HOME/.swiftpaper_after"
+runBeforeTitle=".swiftpaper_before"
+runAfterTitle=".swiftpaper_after"
+runBefore="$HOME/$runBeforeTitle"
+runAfter="$HOME/$runAfterTitle"
+runBeforePresent=$cPurple"~/"$runBeforeTitle$cNone
+runAfterPresent=$cPurple"~/"$runAfterTitle$cNone
 
 # Check for init; show help otherwise
 initCommand=init
 [[ $1 = $initCommand ]] || {
 
 	# Show help
-	echo -e "$ttl sets you up a simple Swift environment."
-	echo -e "To start, navigate into your target directory and run $cCyan$ttlPlain $initCommand$cNone."
+	echo -e "$ttl sets you up a really simple Swift environment."
+	echo ""
+	echo -e "To start, navigate into your target directory and run $cGreen$ttlPlain $initCommand$cNone."
+	echo ""
+	echo -e "To customize the thing, you can write shell code into either or both of the\nfollowing files:"
+	echo ""
+	echo -e "  $runBeforePresent"
+	echo -e "  $runAfterPresent"
+	echo ""
+	echo -e "You probably guessed that $runBeforePresent gets sourced before\n$ttl sets up the environment and $runAfterPresent gets run after."
+	echo ""
+	echo -e "Note that both files are $cRed""sourced$cNone, not $cRed""run$cNone, so don't put in things like $cGreen""exit 0$cNone."
+	echo ""
+	echo -e "Happy Swifting!"
 
 	# Exit
 	exit 0
