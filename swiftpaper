@@ -9,14 +9,14 @@ cNone="\033[0m"
 
 # Define name
 ttlPlain=swiftpaper
-ttl=$cCyanBold$ttl$cNone
+ttl=$cCyanBold$ttlPlain$cNone
 
 # Check for init; show help otherwise
 initCommand=init
-[[ $1 = init ]] || {
+[[ $1 = $initCommand ]] || {
 
 	# Show help
-	echo -e "$cCyanBold""swiftpaper$cNone sets you up a simple Swift environment."
+	echo -e "$ttl sets you up a simple Swift environment."
 	echo -e "To start, navigate into your target directory and run $cCyan$ttlPlain $initCommand$cNone."
 
 	# Exit
