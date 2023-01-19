@@ -25,7 +25,7 @@ initCommand=init
 [[ $1 = $initCommand ]] || {
 
 	# Show help
-	echo -e "$ttl sets you up a really simple Swift environment."
+	echo -e "$ttl sets you up a really simple Swift environment that plays nice with\nVSCode."
 	echo ""
 	echo -e "To start, navigate into your target directory and run $cGreen$ttlPlain $initCommand$cNone."
 	echo ""
