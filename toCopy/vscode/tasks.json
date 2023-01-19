@@ -2,20 +2,20 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
-			"label": "remove builds",
+			"label": "remove debug",
 			"type": "shell",
 			"osx": {
 				"command": "rm",
 				"args": [
 					"-rf",
-					"./.build"
+					"./.build/debug"
 				]
 			},
 			"linux": {
 				"command": "rm",
 				"args": [
 					"-rf",
-					"./.build"
+					"./.build/debug"
 				]
 			},
 			"windows": {
@@ -23,7 +23,7 @@
 				"args": [
 					"/Q",
 					"/S",
-					".\\.build"
+					".\\.build\\debug"
 				]
 			},
 			"presentation": {
@@ -97,10 +97,44 @@
 			"label": "build debug",
 			"dependsOrder": "sequence",
 			"dependsOn": [
-				"remove builds",
+				"remove debug",
 				"mkdir debug",
 				"swiftc debug"
 			]
+		},
+		{
+			"label": "remove release",
+			"type": "shell",
+			"osx": {
+				"command": "rm",
+				"args": [
+					"-rf",
+					"./.build/release"
+				]
+			},
+			"linux": {
+				"command": "rm",
+				"args": [
+					"-rf",
+					"./.build/release"
+				]
+			},
+			"windows": {
+				"command": "rmdir",
+				"args": [
+					"/Q",
+					"/S",
+					".\\.build\\release"
+				]
+			},
+			"presentation": {
+				"echo": false,
+				"reveal": "never",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": false,
+				"clear": false
+			}
 		},
 		{
 			"label": "mkdir release",
@@ -161,7 +195,7 @@
 			"label": "build release",
 			"dependsOrder": "sequence",
 			"dependsOn": [
-				"remove builds",
+				"remove release",
 				"mkdir release",
 				"swiftc release"
 			],
