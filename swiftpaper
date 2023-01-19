@@ -1,1 +1,18 @@
 #!/usr/bin/env bash
+
+# Set colors
+cCyan="\033[0;36m"
+cCyanBold="\033[1;36m"
+cNone="\033[0m"
+
+# Check for init; show help otherwise
+initCommand=init
+[[ $1 = init ]] || {
+
+	# Show help
+	echo -e "$cCyanBold""swiftpaper$cNone sets you up a simple Swift environment."
+	echo -e "To start, navigate into your target directory and run $cCyan""swiftpaper $initCommand$cNone."
+
+	# Exit
+	exit 0
+}
