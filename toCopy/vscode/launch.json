@@ -1,0 +1,25 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "Debug",
+			"type": "lldb",
+			"request": "launch",
+			"program": "${workspaceFolder}/.build/debug/debug",
+			"args": [],
+			"cwd": "${workspaceFolder}",
+			"preLaunchTask": "build debug",
+			"terminal": "console",
+			"internalConsoleOptions": "openOnSessionStart"
+		},
+		{
+			"name": "Release",
+			"type": "lldb",
+			"request": "launch",
+			"program": "${workspaceFolder}/.build/release/{$workspaceFolderBasename}",
+			"args": [],
+			"cwd": "${workspaceFolder}",
+			"preLaunchTask": "build release"
+		}
+	]
+}

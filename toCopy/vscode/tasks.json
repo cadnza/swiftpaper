@@ -1,0 +1,171 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "remove builds",
+			"type": "shell",
+			"osx": {
+				"command": "rm",
+				"args": [
+					"-rf",
+					"./.build"
+				]
+			},
+			"linux": {
+				"command": "rm",
+				"args": [
+					"-rf",
+					"./.build"
+				]
+			},
+			"windows": {
+				"command": "rmdir",
+				"args": [
+					"/Q",
+					"/S",
+					".\\.build"
+				]
+			},
+			"presentation": {
+				"echo": false,
+				"reveal": "never",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": false,
+				"clear": false
+			}
+		},
+		{
+			"label": "mkdir debug",
+			"type": "shell",
+			"osx": {
+				"command": "mkdir",
+				"args": [
+					"-p",
+					"./.build/debug"
+				]
+			},
+			"linux": {
+				"command": "mkdir",
+				"args": [
+					"-p",
+					"./.build/debug"
+				]
+			},
+			"windows": {
+				"command": "cmd",
+				"args": [
+					"/C",
+					"if not exist .\\.build mkdir .\\.build\\debug"
+				]
+			},
+			"presentation": {
+				"echo": false,
+				"reveal": "never",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": false,
+				"clear": false
+			}
+		},
+		{
+			"label": "swiftc debug",
+			"type": "shell",
+			"command": "swiftc",
+			"args": [
+				"-g",
+				"-D",
+				"DEBUG",
+				"main.swift",
+				"`find",
+				"src",
+				"-name",
+				"\"*.swift\"`",
+				"-o",
+				".build/debug/debug"
+			],
+			"presentation": {
+				"echo": false,
+				"reveal": "never",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": false,
+				"clear": false
+			}
+		},
+		{
+			"label": "build debug",
+			"dependsOrder": "sequence",
+			"dependsOn": [
+				"remove builds",
+				"mkdir debug",
+				"swiftc debug"
+			]
+		},
+		{
+			"label": "mkdir release",
+			"type": "shell",
+			"osx": {
+				"command": "mkdir",
+				"args": [
+					"-p",
+					"./.build/release"
+				]
+			},
+			"linux": {
+				"command": "mkdir",
+				"args": [
+					"-p",
+					"./.build/release"
+				]
+			},
+			"windows": {
+				"command": "cmd",
+				"args": [
+					"/C",
+					"if not exist .\\.build mkdir .\\.build\\release"
+				]
+			},
+			"presentation": {
+				"echo": false,
+				"reveal": "never",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": false,
+				"clear": false
+			}
+		},
+		{
+			"label": "swiftc release",
+			"type": "shell",
+			"command": "swiftc",
+			"args": [
+				"main.swift",
+				"`find",
+				"src",
+				"-name",
+				"\"*.swift\"`",
+				"-o",
+				".build/release/${workspaceFolderBasename}"
+			],
+			"presentation": {
+				"echo": false,
+				"reveal": "never",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": false,
+				"clear": false
+			}
+		},
+		{
+			"label": "build release",
+			"dependsOrder": "sequence",
+			"dependsOn": [
+				"remove builds",
+				"mkdir release",
+				"swiftc release"
+			],
+			"group": "build"
+		}
+	]
+}
