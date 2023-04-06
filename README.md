@@ -36,23 +36,23 @@ Clone the repo and add it to your path.
 
 ## Documentation
 
-If you forget anything, just run `swiftlint` in the command line. For example:
+If you forget anything, just run `swiftpaper` in the command line. For example:
 
 ```
-swiftlint
+swiftpaper
 ```
 
 It'll walk you through everything.
 
 ## Use
 
-Create a new directory, navigate into it, and run `swiftlint init`. Like this:
+Create a new directory, navigate into it, and run `swiftpaper init`. Like this:
 
 ```
 cd
 mkdir newProject
 cd newProject
-swiftlint init
+swiftpaper init
 ```
 
 ## Customization
